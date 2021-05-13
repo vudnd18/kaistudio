@@ -1,65 +1,52 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from 'react';
+import axios from 'axios';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
+import Modal from 'react-modal';
+import BackgroundSlider from 'react-background-slider';
+import Meta from '../components/Layouts/Meta';
 
-export default function Home() {
+export default function Home({ images }) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <>
+      <Meta />
+      <header className="">
+        <div className="relative">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="flex justify-end items-end py-6 md:space-x-10">
+              <Link href="/project">
+                <a className="pl-6">
+                  <img className="h-10 w-auto sm:h-20" src="/images/logo.png" alt="logo" />
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
+      </header>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+      <div>
+        {images.length > 0 && <BackgroundSlider images={images} duration={5} transition={2} />}
+      </div>
+    </>
+  );
+}
+
+Home.propTypes = {
+  images: PropTypes.array,
+};
+
+export async function getServerSideProps() {
+  const res = await axios.get(`${process.env.API_URL}/banners?status=1`);
+  const banners = res.data;
+  let images = [];
+  if (banners && banners.length > 0) {
+    images = banners.map((banner) => {
+      return `${process.env.API_URL}${banner.image.url}`;
+    });
+  }
+  return {
+    props: {
+      images,
+    },
+  };
 }

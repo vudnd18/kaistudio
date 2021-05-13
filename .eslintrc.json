@@ -1,0 +1,45 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "airbnb"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [],
+  "rules": {
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }], // airbnb is using .jsx
+    "react/forbid-prop-types": "off", // airbnb use error
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-shadow": [0, { "builtinGlobals": false, "hoist": "functions", "allow": [] }],
+    "no-unused-vars": "warn",
+    "arrow-body-style": "off",
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off", // Not our taste?
+    "jsx-a11y/anchor-is-valid": "off",
+    "object-curly-newline": "off",
+    "operator-linebreak": "off"
+  }
+}

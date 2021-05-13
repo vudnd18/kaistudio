@@ -1,0 +1,157 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 16px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.react-slideshow-fade-wrapper {
+  height: 100vh !important;
+
+}
+
+.image-wrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+  cursor: pointer;
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .caption {
+    background: #4f807d96;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 1;
+    .caption-text {
+      h4 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  &:hover .caption {
+    opacity: 1;
+    // transform: translateY(-100px);
+    // -webkit-transform:translateY(-100px);
+    // -moz-transform:translateY(-100px);
+    // -ms-transform:translateY(-100px);
+    // -o-transform:translateY(-100px);
+  }
+}
+
+
+
+@media screen and(max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+$bci-green: #00a94b;
+$bci-red: #f33d33;
+$bci-blue: #007ebf;
+$bci-yellow: #fbed00;
+.loading-box {
+  z-index: 9999;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  .spinner {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    position: absolute;
+    & > div {
+      width: 16px;
+      height: 16px;
+      background-color: $bci-blue;
+      border-radius: 100%;
+      display: inline-block;
+      animation: sk-bouncedelay 1.7s infinite ease-in-out both;
+      margin-right: 5px;
+    }
+    .spinner__item1 {
+      animation-delay: -0.60s;
+      background-color: $bci-green;
+    }
+    .spinner__item2 {
+      animation-delay: -0.40s;
+      background-color: $bci-yellow;
+    }
+    .spinner__item3 {
+      animation-delay: -0.20s;
+      background-color: $bci-red;
+    }
+  }
+}
+
+.project-galerry {
+  .galerry-item {
+    border: 15px solid white;
+    width: calc(100%/2);
+    float: left;
+  }
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -15px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 15px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.btn-close-modal {
+  position: absolute;
+  z-index: 4;
+  top: 50px;
+  right: 100px;
+}
+
+
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0;
+  } 40% {
+    transform: scale(1.0);
+    opacity: 1;
+  }
+}
