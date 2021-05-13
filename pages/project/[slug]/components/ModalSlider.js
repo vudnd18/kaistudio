@@ -33,7 +33,7 @@ export default function ModalSlider({ isOpen, closeModal, images }) {
         </div>
         <div className="modal-body">
           <AwesomeSlider bullets={false}>
-            {images.map((item) => (
+            {images && images.map((item) => (
               <div className="galerry-item grid-item" key={item.id}>
                 <img src={`${process.env.API_URL}${item.url}`} alt={item.name} />
               </div>
