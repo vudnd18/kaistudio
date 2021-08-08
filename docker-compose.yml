@@ -1,0 +1,25 @@
+version: '3'
+services:
+  nextjs_kaistudio:
+    container_name: kaistudio
+    stdin_open: true
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/opt/app
+      - /opt/app/node_modules
+      - /opt/app/.next
+    restart: always
+    environment:
+      VIRTUAL_HOST: kaistudio.vn
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: kaistudio.vn
+      LETSENCRYPT_EMAIL: vudnd18@gmail.com
+      NODE_ENV: production
+    env_file:
+      - .env
+networks:
+  default:
+    external:
+      name: strapi_network
